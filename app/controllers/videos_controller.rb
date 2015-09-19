@@ -56,30 +56,28 @@ class VideosController < ApplicationController
 
 		file_names.each do |file_name|
 			video_log = VideoLog.find_by filename: file_name
-
 			data.push file_metadata(video_log)
 		end 
+
+		render :json => data
 	end
 
-	render :json => data
-end
+	private
+	def file_metadata(video_log)
+		data = {
+			filename: video_log.filename,
+			time: video_log.timestamp,
+			lat: video_log.latitude,
+			lon: video_log.longitude,
+			address: video_log.address
+		}
 
-private
-def file_metadata(video_log)
-	data = {
-		filename: video_log.filename,
-		time: video_log.timestamp,
-		lat: video_log.latitude,
-		lon: video_log.longitude,
-		address: video_log.address
-	}
+		return data
+	end
 
-	return data
-end
-
-def video_log_params
-	params.permit(:filename, :address, :timestamp, :latitude, :longitude)
-end
+	def video_log_params
+		params.permit(:filename, :address, :timestamp, :latitude, :longitude)
+	end
 
 
 end
