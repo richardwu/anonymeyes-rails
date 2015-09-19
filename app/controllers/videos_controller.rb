@@ -38,16 +38,10 @@ class VideosController < ApplicationController
 
 	def get_videos
 		# Retrieve all video filenames
-		file_names = Dir[Rails.root+'public/recorded-videos/*'].map! {|path| File.basename path}
+		# file_names = Dir[Rails.root+'public/recorded-videos/*'].map! {|path| File.basename path}
 
-		# file_names = [
-		# 	"1442651884,43.4722854,-80.5448576.mp4",
-		# 	"1442651884,43.4722854,-80.5448576.mp4",
-		# 	"1442651884,43.4722854,-80.5448576.mp4",
-		# 	"1442651884,43.4722854,-80.5448576.mp4",
-		# 	"1442651884,43.4722854,-80.5448576.mp4",
-		# 	"1442651884,43.4722854,-80.5448576.mp4"
-		# ]
+		file_names = VideoLog.all.collect(&:filename)
+
 
 		data = []
 
