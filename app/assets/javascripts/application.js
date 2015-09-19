@@ -14,8 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 
-//= require js/bootstrap.min 
+//= require js/bootstrap.min
 //= require js/material.min
+//= require js/materialize.min
 
 //= require angular
 
@@ -23,4 +24,3 @@
 
 
 //= require_tree .
-
