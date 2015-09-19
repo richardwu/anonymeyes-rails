@@ -15,16 +15,16 @@ class VideosController < ApplicationController
 
 	def get_videos
 		# Retrieve all video filenames
-		# file_names = Dir['/recorded-videos/*']
+		file_names = Dir[Rails.root+'/recorded-videos/*']
 
-		file_names = [
-			"1442651884,43.4722854,-80.5448576.mp4",
-			"1442651884,43.4722854,-80.5448576.mp4",
-			"1442651884,43.4722854,-80.5448576.mp4",
-			"1442651884,43.4722854,-80.5448576.mp4",
-			"1442651884,43.4722854,-80.5448576.mp4",
-			"1442651884,43.4722854,-80.5448576.mp4"
-		]
+		# file_names = [
+		# 	"1442651884,43.4722854,-80.5448576.mp4",
+		# 	"1442651884,43.4722854,-80.5448576.mp4",
+		# 	"1442651884,43.4722854,-80.5448576.mp4",
+		# 	"1442651884,43.4722854,-80.5448576.mp4",
+		# 	"1442651884,43.4722854,-80.5448576.mp4",
+		# 	"1442651884,43.4722854,-80.5448576.mp4"
+		# ]
 
 		# Parse timestamps, latitude, and longitude
 		file_names.map! {|file_name| file_name.split(',')}
