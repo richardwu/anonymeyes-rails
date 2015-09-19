@@ -18,3 +18,5 @@
 //= require js/material.min
 
 //= require_tree .
+//= require websocket_rails/main
+
