@@ -1,1 +1,1 @@
-var videoDispatcher = new WebSocketRails(window.location.host+'/websocket');
+var videoDispatcher = new WebSocketRails('104.197.49.2/websocket');
