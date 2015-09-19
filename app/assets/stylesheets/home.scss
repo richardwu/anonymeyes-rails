@@ -1,3 +1,10 @@
+body {
+  a, a:hover, a:focus, a:visited, a[href]:after {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
 #map {
   height: 500px;
 }
