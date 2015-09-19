@@ -27,6 +27,22 @@ function mainController($scope){
       return moment.unix(time).calendar();
     };
 
+    vm.formatFilename = function(filename){
+      return filename.split(',').join('').split('.').join('');
+    }
+
+    vm.showModal = function(video){
+      $('#modal-'+vm.formatFilename(video.filename)).openModal();
+    }
+
+
+
+
+
+
+
+
+
     // Try to get the user's location
     var cur_lat, cur_lng;
     function geo_success(position) {
@@ -53,12 +69,19 @@ function mainController($scope){
     }
 
     function make_map() {
-    console.log("Make map " + cur_lat + " " + cur_lng);
+      console.log("Make map " + cur_lat + " " + cur_lng);
       vm.markers = [];
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
         center: {lat: cur_lat, lng: cur_lng}
       });
+
+
+
+
+
+
+
 
       // For Testing Purposes
       var marker = new google.maps.Marker({
@@ -67,30 +90,39 @@ function mainController($scope){
           lng: -80.54027
         },
         map: map,
-        title: "Sept 5 2015",
-        color: 'blue'
+        title: "Get live stream"
       });
       vm.markers.push(marker);
+
       google.maps.event.addListener(marker, 'click', function(e){
-        $('#modal-'+parseInt(vm.markers.length)).openModal();
+        $('#modal-1442651880434722854-805448576mp4').openModal();
       });
-      var marker2 = new google.maps.Marker({
-        position: {
-          lat: 43.97284,
-          lng: -85.54027
-        },
-        map: map,
-        title: "Sept 8 2015"
-      });
-      vm.markers.push(marker2);
-      google.maps.event.addListener(marker2, 'click', function(e){
-        $('#modal-'+parseInt(vm.markers.length)).openModal();
-      });
+
+
+      // var marker2 = new google.maps.Marker({
+      //   position: {
+      //     lat: 43.97284,
+      //     lng: -85.54027
+      //   },
+      //   map: map,
+      //   title: "Sept 8 2015"
+      // });
+      // vm.markers.push(marker2);
+      // google.maps.event.addListener(marker2, 'click', function(e){
+      //   $('#modal-'+parseInt(vm.markers.length)).openModal();
+      // });
       vm.$apply();
     };
 
+
+
+
+
+
+
+
     function newVideoReceived(data){
-      // Data returned is hash with filename, time (in UNIX), lat, lon, and address
+      // Data returned is hash with filename, time (in UNIX), lat, lon, and address AND ID
       var video = data;
 
       vm.videos.push(video);
@@ -105,7 +137,7 @@ function mainController($scope){
       });
       vm.markers.push(marker);
       google.maps.event.addListener(marker, 'click', function(e){
-        $('#modal-'+parseInt(vm.markers.length)).openModal();
+        $('#modal-'+vm.formatFilename(video.filename)).openModal();
       });
       vm.$apply();
     };

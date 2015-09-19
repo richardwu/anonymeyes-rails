@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="card col s4">
-          <div class="list-video" ng-repeat="video in videos">
+          <div class="list-video" ng-repeat="video in videos" ng-click="showModal(video)">
             <span class="list-time">{{formatTime(video.time)}}</span>
             <span class="list-address text-muted">{{video.address}}</span>
             <div class="spacer"></div>
@@ -30,7 +30,7 @@
         </div>
       </div>
 
-      <div class="modal" ng-repeat="video in videos" id="modal-{{$index+1}}">
+      <div class="modal" ng-repeat="video in videos" id="modal-{{formatFilename(video.filename)}}">
         <div class="modal-content">
           <video width="352" height="288" controls loop>
             <source ng-src="{{getFile(video)}}" type="video/mp4">
