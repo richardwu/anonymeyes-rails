@@ -43,7 +43,7 @@ function mainController($scope){
     vm.checkVideo = function(video){
       var filename = video.filename;
 
-      var url = window.location.host+'/recorded-videos/' + filename;
+      var url = '/recorded-videos/' + filename;
 
       var request = new XMLHttpRequest();
 
