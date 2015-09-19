@@ -52,7 +52,7 @@ function mainController($scope){
     console.log("Make map " + cur_lat + " " + cur_lng);
       vm.markers = [];
       var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 17,
+        zoom: 16,
         center: {lat: cur_lat, lng: cur_lng}
       });
 
