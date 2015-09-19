@@ -1,9 +1,9 @@
 <body ng-app="homePage">
 
   <div ng-controller="mainController" style="height:100%;position:relative;">
-    <div class="container-fluid">
 
-      <nav>
+    <nav>
+      <div class="container-fluid">
         <div class="nav-wrapper">
           <a href="#" class="brand-logo">Logo</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -12,17 +12,20 @@
             <li><a href="collapsible.html">JavaScript</a></li>
           </ul>
         </div>
-      </nav>
+      </div>
+    </nav>
 
+    <div class="container-fluid">
       <div class="row">
-        <div class="card col s8">
+        <div class="card col s7">
           <div id="map">
           </div>
         </div>
-        <div class="col s4">
-          <div class="marker card" ng-repeat="marker in markers">
-            <p class="marker-timestamp">{{marker.timestamp}}Sept 2, 2015</p class="marker-timestamp">
-            <p class="marker-address text-muted">{{marker.address}}Toronto, ON</p>
+        <div class="card col s4">
+          <div class="list-video" ng-repeat="video in videos">
+            <span class="list-time">{{formatTime(video.time)}}</span>
+            <span class="list-address text-muted">{{video.address}}</span>
+            <div class="spacer"></div>
           </div>
         </div>
       </div>
@@ -31,18 +34,18 @@
         <div class="modal-content">
           <video width="352" height="288" controls loop>
             <source ng-src="{{getFile(video)}}" type="video/mp4">
-          </video>
+            </video>
 
-          <div class="spacer"></div>
+            <div class="spacer"></div>
 
-          <span class="modal-address">{{video.address}}</span>
+            <span class="modal-address">{{video.address}}</span>
+          </div>
+          <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Exit</a>
+          </div>
         </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Exit</a>
-        </div>
+
       </div>
-
     </div>
-  </div>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClOsOusm151JpYil1kptdDMfknXlNYJ5s"></script>
-</body>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClOsOusm151JpYil1kptdDMfknXlNYJ5s"></script>
+  </body>

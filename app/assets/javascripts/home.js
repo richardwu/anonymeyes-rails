@@ -23,6 +23,9 @@ function mainController($scope){
       return '/recorded-videos/' + video.filename;
     }
 
+    vm.formatTime = function(time){
+    }
+
     // Try to get the user's location
     var cur_lat, cur_lng;
     function geo_success(position) {

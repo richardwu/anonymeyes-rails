@@ -8,6 +8,10 @@
 	width: 0;
 }
 
+.card {
+	margin: 20px;
+}
+
 .modal {
 }
 .modal-content {
@@ -21,12 +25,21 @@
 .modal-address{
 
 }
-.marker {
-  padding: 10px 10px 0 10px;
+
+
+.list-time {
+	float: left;
 }
-p {
-  display: inline;
+
+.list-address {
+	float: right;
 }
-.marker-address {
-  float: right;
+
+
+
+/* list view */
+.video {
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+
 }
