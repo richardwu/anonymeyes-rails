@@ -36,8 +36,11 @@ body {
 
 .empty-video {
 	height: 288px;
+	line-height: 288px;
+	margin-left: auto;
+	margin-right: auto;
 	width: 352px;
-	border: 1 solid black;
+	border: 1px solid black;
 }
 
 
