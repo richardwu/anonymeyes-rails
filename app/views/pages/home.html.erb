@@ -1,0 +1,14 @@
+<body ng-app="homePage">
+  <script type="text/javascript">autoload();</script>
+  <div class="row">
+    <div class="card" ng-repeat="video in videos">
+      <div class="card-image">
+        <img src=""></img>
+      </div>
+      <div class="card-content">
+        <h1>{{video.Location}}</h1>
+        <p class="text-muted">{{video.TimeStamp}}</p>
+      </div>
+    </div>
+  </div>
+</body>
