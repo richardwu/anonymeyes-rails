@@ -6,14 +6,10 @@ function mainController($scope){
 	var vm = $scope;
 	window.scope = vm;
 
-
-
-
-
 	angular.element(document).ready(function(){
 		videoDispatcher.bind('new_video_received', newVideoReceived);
 
-		var markers = [];
+		vm.markers = [];
 		var map = new google.maps.Map(document.getElementById('map'), {
 			zoom: 8,
 			center: {lat: -34.397, lng: 150.644}
@@ -37,13 +33,15 @@ function mainController($scope){
 			var marker = new google.maps.Marker({
 				position: {
 					lat: lat,
-					lon: lo
+					lng: lon
 				},
 				map: map,
 				title: time
 			});
-			markers.push(marker);
-
+			vm.markers.push(marker);
+			google.maps.event.addListener(marker, 'click', function(e){
+				$('#modal-'+parseInt(vm.markers.length)).openModal();
+			});
 		};
 
 
