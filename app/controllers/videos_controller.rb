@@ -57,39 +57,29 @@ class VideosController < ApplicationController
 		file_names.each do |file_name|
 			video_log = VideoLog.find_by filename: file_name
 
-			if video_log.nil?
-				file_name_arr = file_name.split(',')
-				video_log = VideoLog.create(filename: file_name, timestamp: file_name_arr[0], latitude: file_name_arr[1], longitude: file_name_arr[2].split('.mp4')[0])
-
-				if video_log.save
-					data.push file_metadata(video_log)
-				else
-					render :json => {message: 'Failed to save video log after get_videos'}
-				end
-			else
-				data.push file_metadata(video_log)
-			end 
-		end
-
-		render :json => data
+			data.push file_metadata(video_log)
+		end 
 	end
 
-	private
-	def file_metadata(video_log)
-		data = {
-			filename: video_log.filename,
-			time: video_log.timestamp,
-			lat: video_log.latitude,
-			lon: video_log.longitude,
-			address: video_log.address
-		}
+	render :json => data
+end
 
-		return data
-	end
+private
+def file_metadata(video_log)
+	data = {
+		filename: video_log.filename,
+		time: video_log.timestamp,
+		lat: video_log.latitude,
+		lon: video_log.longitude,
+		address: video_log.address
+	}
 
-	def video_log_params
-		params.permit(:filename, :address, :timestamp, :latitude, :longitude)
-	end
+	return data
+end
+
+def video_log_params
+	params.permit(:filename, :address, :timestamp, :latitude, :longitude)
+end
 
 
 end

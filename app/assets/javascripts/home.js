@@ -127,7 +127,7 @@ function mainController($scope){
     }
 
     function make_map() {
-      console.log("Make map " + cur_lat + " " + cur_lng);
+      // console.log("Make map " + cur_lat + " " + cur_lng);
       vm.markers = [];
       map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
@@ -183,14 +183,10 @@ function mainController($scope){
       success: function(resp){
 
         console.log(resp);
-        console.log(resp.length > 0);
 
 
         // resp is a hash of hashes of filenames, times, lats, lons, and addresses
-        if (resp.length > 0)
-          vm.videos = resp;
-        else
-          vm.videos = [];
+        vm.videos = resp;
 
         for (i in vm.videos){
           addMarker(vm.videos[i]);
