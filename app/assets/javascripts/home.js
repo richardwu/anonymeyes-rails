@@ -4,7 +4,14 @@ angular.module('homePage', [])
 function mainController($scope){
 	$scope.videos = [];
 
-	angular.element.document.ready(function(){
+	var vm = $scope;
+	window.scope = vm;
+
+
+
+
+
+	angular.element(document).ready(function(){
 		videoDispatcher.bind('new_video_received', newVideoReceived);
 
 		function newVideoReceived(data){
@@ -31,6 +38,7 @@ function mainController($scope){
 			dataType: 'json',
 			success: function(resp){
 				// resp is a hash of hashes of filenames, times, lats, and lons
+				console.log(resp);
 			},
 
 			error: function(resp){

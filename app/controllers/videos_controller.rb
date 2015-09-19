@@ -9,11 +9,22 @@ class VideosController < ApplicationController
 		data = file_metadata(file_name_arr)
 
 		WebsocketRails.trigger 'new_video_received', data
+
+		render :json => data
 	end 
 
 	def get_videos
 		# Retrieve all video filenames
-		file_names = Dir['/recorded-videos/*']
+		# file_names = Dir['/recorded-videos/*']
+
+		file_names = [
+			"1442651884,43.4722854,-80.5448576.mp4",
+			"1442651884,43.4722854,-80.5448576.mp4",
+			"1442651884,43.4722854,-80.5448576.mp4",
+			"1442651884,43.4722854,-80.5448576.mp4",
+			"1442651884,43.4722854,-80.5448576.mp4",
+			"1442651884,43.4722854,-80.5448576.mp4"
+		]
 
 		# Parse timestamps, latitude, and longitude
 		file_names.map! {|file_name| file_name.split(',')}
@@ -22,12 +33,14 @@ class VideosController < ApplicationController
 		data = file_names.collect do |file_name_arr|
 			file_metadata(file_name_arr)
 		end
+
+		render :json => data
 	end
 
 	private
 	def file_metadata(file_name_arr)
 		data = {
-			filename: file_name_arr.join(',')
+			filename: file_name_arr.join(','),
 			time: file_name_arr[0],
 			lat: file_name_arr[1],
 			# Removes the extension
