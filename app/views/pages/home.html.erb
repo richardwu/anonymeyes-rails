@@ -20,16 +20,18 @@
           </div>
         </div>
         <div class="col s4">
-          <div class="card" ng-repeat="marker in markers">
-            <h1>{{marker.timestamp}}</h1>
-            <p class="text-muted">{{marker.address}}</p>
+          <div class="marker card" ng-repeat="marker in markers">
+            <p class="marker-timestamp">{{marker.timestamp}}Sept 2, 2015</p class="marker-timestamp">
+            <p class="marker-address text-muted">{{marker.address}}Toronto, ON</p>
           </div>
         </div>
       </div>
 
       <div class="modal" ng-repeat="marker in markers" id="modal-{{$index+1}}">
         <div class="modal-content">
-          <p>text</p>
+          <p class="marker-timestamp">{{marker.timestamp}}</p class="marker-timestamp">
+          <p class="marker-address">{{marker.address}}</p>
+          <iframe src="http://www.youtube.com/embed/KMU0tzLwhbE?autoplay=0" width="100%" height="100%"></iframe>
         </div>
         <div class="modal-footer">
           <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Exit</a>
