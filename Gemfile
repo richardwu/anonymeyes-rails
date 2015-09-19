@@ -39,6 +39,9 @@ gem 'geocoder'
 gem 'momentjs-rails', '~> 2.10.3'
 
 
+gem 'firebase', '~> 0.2.4'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

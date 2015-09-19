@@ -1,5 +1,10 @@
 class VideosController < ApplicationController
 
+
+	firebase_uri = 'https://blazing-torch-7129.firebaseio.com/'
+
+	firebase = Firebase::Client.new(firebase_uri)
+
 	# Request indicating a recording has been started 
 	# Render location (but not video)
 	def new_recording
@@ -11,7 +16,8 @@ class VideosController < ApplicationController
 
 		if video_log.save
 			data = file_metadata(video_log)
-			WebsocketRails.trigger 'new_recording_started', data
+			# WebsocketRails.trigger 'new_recording_started', data
+			response = firebase.push('new_recording_started', data)
 			render :json => data
 		end
 	end
@@ -30,7 +36,8 @@ class VideosController < ApplicationController
 		else
 			data = file_metadata(video_log)
 
-			WebsocketRails.trigger 'new_video_uploaded', data
+			# WebsocketRails.trigger 'new_video_uploaded', data
+			response = firebase.push('new_video_uploaded', data)
 
 			render :json => data
 		end

@@ -15,9 +15,15 @@ function mainController($scope){
   angular.element(document).ready(function(){
 
 
-    videoDispatcher.bind('new_recording_started', newRecordingStarted);
+    // videoDispatcher.bind('new_recording_started', newRecordingStarted);
+    var ref = new Firebase('https://blazing-torch-7129.firebaseio.com/new_recording_started');
 
-    videoDispatcher.bind('new_video_uploaded', newVideoUploaded);
+    ref.on('value', function(snapshot){
+      console.log(snapshot.val());
+    }, function(errorObject){
+      console.log('The read failed: ' + errorObject.code);
+    });
+    // videoDispatcher.bind('new_video_uploaded', newVideoUploaded);
 
     vm.videos = [];
 
