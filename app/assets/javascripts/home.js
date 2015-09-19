@@ -13,10 +13,11 @@ function mainController($scope){
 	angular.element(document).ready(function(){
 		videoDispatcher.bind('new_video_received', newVideoReceived);
 
+		var markers = [];
 		var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 8,
-    center: {lat: -34.397, lng: 150.644}
-  });
+			zoom: 8,
+			center: {lat: -34.397, lng: 150.644}
+		});
 
 		function newVideoReceived(data){
 			// Data returned is hash with filename, time (in UNIX), lat, and lon
@@ -40,7 +41,9 @@ function mainController($scope){
 				},
 				map: map,
 				title: time
-			})
+			});
+			markers.push(marker);
+
 		};
 
 

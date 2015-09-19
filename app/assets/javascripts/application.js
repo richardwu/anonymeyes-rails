@@ -15,7 +15,6 @@
 //= require turbolinks
 
 //= require js/bootstrap.min
-//= require js/material.min
 //= require js/materialize.min
 
 //= require angular

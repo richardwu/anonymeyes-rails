@@ -1,32 +1,44 @@
 <body ng-app="homePage">
 
   <div ng-controller="mainController" style="height:100%;position:relative;">
-    <nav>
-      <div class="nav-wrapper">
-        <a href="#" class="brand-logo">Logo</a>
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li><a href="sass.html">Sass</a></li>
-          <li><a href="badges.html">Components</a></li>
-          <li><a href="collapsible.html">JavaScript</a></li>
-        </ul>
-      </div>
-  </nav>
-  <div class="card">
-  <div id="map">
-  </div>
+    <div class="container-fluid">
 
-</div>
-  <!--
-    <div class="row">
-      <div class="card" ng-repeat="video in videos">
-
-        <div class="card-content">
-          <h1>{{video.Location}}</h1>
-          <p class="text-muted">{{video.TimeStamp}}</p>
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo">Logo</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="sass.html">Sass</a></li>
+            <li><a href="badges.html">Components</a></li>
+            <li><a href="collapsible.html">JavaScript</a></li>
+          </ul>
         </div>
+      </nav>
+      <div class="card">
+        <div id="map">
+          <!--  <div class="modal" ng-repeat="marker in markers" id="modal-{{$index+1}}">
+          <div class="modal-content">
+          <h4>{{marker.address}}</h4>
+          <p class="text-muted">{{marker.time}}</p>
+          <video src="{{marker.video}}" autoplay poster="posterimage.jpg"></video>
+        </div>
+        <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close">Exit</a>
+      </div>
+    </div> -->
       </div>
     </div>
   </div>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClOsOusm151JpYil1kptdDMfknXlNYJ5s"></script>
--->
+</div>
+    <!--
+  <div class="row">
+  <div class="card" ng-repeat="video in videos">
+
+  <div class="card-content">
+  <h1>{{video.Location}}</h1>
+  <p class="text-muted">{{video.TimeStamp}}</p>
+</div>
+</div>
+</div>
+</div>-->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClOsOusm151JpYil1kptdDMfknXlNYJ5s"></script>
 </body>
