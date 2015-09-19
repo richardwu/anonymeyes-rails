@@ -14,8 +14,16 @@
         </div>
       </nav>
 
-      <div class="card">
-        <div id="map">
+      <div class="row">
+        <div class="card col s8">
+          <div id="map">
+          </div>
+        </div>
+        <div class="col s4">
+          <div class="card" ng-repeat="marker in markers">
+            <h1>{{marker.timestamp}}</h1>
+            <p class="text-muted">{{marker.address}}</p>
+          </div>
         </div>
       </div>
 
@@ -27,7 +35,7 @@
           <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Exit</a>
         </div>
       </div>
-      
+
     </div>
   </div>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClOsOusm151JpYil1kptdDMfknXlNYJ5s"></script>
