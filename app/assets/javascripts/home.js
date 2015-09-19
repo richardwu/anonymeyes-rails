@@ -11,9 +11,10 @@ function mainController($scope){
   var vm = $scope;
   window.scope = vm;
 
+  var map;
+
   // On document load
   angular.element(document).ready(function(){
-
 
     // videoDispatcher.bind('new_recording_started', newRecordingStarted);
     var ref = new Firebase('https://blazing-torch-7129.firebaseio.com/new_recording_started');
@@ -90,6 +91,7 @@ function mainController($scope){
       maximumAge: 30000,
       timeout: 27000
     };
+
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options);
     } else {
@@ -99,7 +101,7 @@ function mainController($scope){
     function make_map() {
       console.log("Make map " + cur_lat + " " + cur_lng);
       vm.markers = [];
-      var map = new google.maps.Map(document.getElementById('map'), {
+      map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
         center: {lat: cur_lat, lng: cur_lng}
       });
@@ -116,20 +118,7 @@ function mainController($scope){
 
       vm.videos.push(video);
 
-      var marker = new google.maps.Marker({
-        position: {
-          lat: video.lat,
-          lng: video.lon
-        },
-        map: map,
-        title: 'Click for stream'
-      });
-
-      vm.markers.push(marker);
-
-      google.maps.event.addListener(marker, 'click', function(e){
-        $('#modal-'+vm.formatFilename(video.filename)).openModal();
-      });
+      addMarker(video);
 
       vm.$apply();
     };
@@ -170,6 +159,11 @@ function mainController($scope){
         // resp is a hash of hashes of filenames, times, lats, lons, and addresses
         vm.videos = resp;
 
+        for (i in vm.videos){
+          addMarker(vm.videos[i]);
+        }
+
+
         vm.$apply();
 
 
@@ -179,5 +173,25 @@ function mainController($scope){
 
       }
     });
+
+    function addMarker(video){
+      var marker = new google.maps.Marker({
+        position: {
+          lat: video.lat,
+          lng: video.lon
+        },
+        map: map,
+        title: 'Click for stream'
+      });
+
+      vm.markers.push(marker);
+
+      google.maps.event.addListener(marker, 'click', function(e){
+        $('#modal-'+vm.formatFilename(video.filename)).openModal();
+      });
+
+      marker.setMap(map);
+
+    };
   });
 };
