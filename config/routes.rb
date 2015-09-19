@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   post '/new_video' => 'videos#new_video'
 
+  get '/video' => 'videos#get_video'
+
   get '/videos' => 'videos#get_videos'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
