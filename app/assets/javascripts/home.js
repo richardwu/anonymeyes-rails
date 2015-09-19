@@ -14,7 +14,10 @@ function mainController($scope){
   // On document load
   angular.element(document).ready(function(){
 
-    videoDispatcher.bind('new_video_received', newVideoReceived);
+
+    videoDispatcher.bind('new_recording_started', newRecordingStarted);
+
+    videoDispatcher.bind('new_video_uploaded', newVideoUploaded);
 
     vm.videos = [];
 
@@ -33,6 +36,25 @@ function mainController($scope){
 
     vm.showModal = function(video){
       $('#modal-'+vm.formatFilename(video.filename)).openModal();
+    }
+
+
+    // Checks if the video has been uploaded yet
+    vm.checkVideo = function(video){
+      var filename = video.filename;
+
+      var url = window.location.host+'/recorded-videos/' + filename;
+
+      var request = new XMLHttpRequest();
+
+      request.open('HEAD', url, false);
+      request.send();
+
+      if(request.status == 200) {
+        return true;
+      } else {
+        return false;
+      }
     }
 
 
@@ -98,19 +120,33 @@ function mainController($scope){
         $('#modal-1442651880434722854-805448576mp4').openModal();
       });
 
+      vm.$apply();
+    };
 
-      // var marker2 = new google.maps.Marker({
-      //   position: {
-      //     lat: 43.97284,
-      //     lng: -85.54027
-      //   },
-      //   map: map,
-      //   title: "Sept 8 2015"
-      // });
-      // vm.markers.push(marker2);
-      // google.maps.event.addListener(marker2, 'click', function(e){
-      //   $('#modal-'+parseInt(vm.markers.length)).openModal();
-      // });
+
+
+
+
+    function newRecordingStarted(data){
+      var video = data;
+
+      vm.videos.push(video);
+
+      var marker = new google.maps.Marker({
+        position: {
+          lat: video.lat,
+          lng: video.lon
+        },
+        map: map,
+        title: 'Click for stream'
+      });
+
+      vm.markers.push(marker);
+
+      google.maps.event.addListener(marker, 'click', function(e){
+        $('#modal-'+vm.formatFilename(video.filename)).openModal();
+      });
+
       vm.$apply();
     };
 
@@ -121,24 +157,19 @@ function mainController($scope){
 
 
 
-    function newVideoReceived(data){
+
+
+
+
+    function newVideoUploaded(data){
       // Data returned is hash with filename, time (in UNIX), lat, lon, and address AND ID
-      var video = data;
+      // var video = data;
 
-      vm.videos.push(video);
+      // for (i in vm.videos){
+      //   if (vm.videos[i].filename == video.filename)
+      //     vm.videos[i].uploaded = true;
+      // }
 
-      var marker = new google.maps.Marker({
-        position: {
-          lat: data.lat,
-          lng: data.lon
-        },
-        map: map,
-        title: 'Click for stream'
-      });
-      vm.markers.push(marker);
-      google.maps.event.addListener(marker, 'click', function(e){
-        $('#modal-'+vm.formatFilename(video.filename)).openModal();
-      });
       vm.$apply();
     };
 
@@ -151,6 +182,7 @@ function mainController($scope){
       success: function(resp){
 
         console.log(resp);
+
         // resp is a hash of hashes of filenames, times, lats, lons, and addresses
         vm.videos = resp;
 

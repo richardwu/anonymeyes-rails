@@ -30,9 +30,13 @@
 
       <div class="modal" ng-repeat="video in videos" id="modal-{{formatFilename(video.filename)}}">
         <div class="modal-content">
-          <video width="352" height="288" controls loop>
+          <video width="352" height="288" controls loop ng-if="checkVideo(video)">
             <source ng-src="{{getFile(video)}}" type="video/mp4">
             </video>
+
+            <div class="empty-video" ng-if="!checkVideo(video)">
+              The video is processing. Please try again later.
+            </div>
 
             <div class="spacer"></div>
 

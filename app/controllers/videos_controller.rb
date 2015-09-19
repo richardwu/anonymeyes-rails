@@ -1,26 +1,39 @@
 class VideosController < ApplicationController
 
-	# Endpoint for requests from Java server to indicate new video
-	def new_video
+	# Request indicating a recording has been started 
+	# Render location (but not video)
+	def new_recording
 		file_name = params[:filename]
-
 		file_name_arr = file_name.split(',')
-
 
 
 		video_log = VideoLog.create(filename: file_name, timestamp: file_name_arr[0], latitude: file_name_arr[1], longitude: file_name_arr[2].split('.mp4')[0])
 
 		if video_log.save
 			data = file_metadata(video_log)
+			WebsocketRails.trigger 'new_recording_started', data
+			render :json => data
 		end
+	end
+
+	# Request indicating the recording has finished
+	def new_video
+		file_name = params[:filename]
+
+		file_name_arr = file_name.split(',')
 
 
+		video_log = VideoLog.find_by(filename: file_name)
 
+		if video_log.nil?
+			render :json => {message: 'Error loading video from file.'}
+		else
+			data = file_metadata(video_log)
 
+			WebsocketRails.trigger 'new_video_uploaded', data
 
-		WebsocketRails.trigger 'new_video_received', data
-
-		render :json => data
+			render :json => data
+		end
 	end 
 
 	def get_videos
@@ -54,14 +67,6 @@ class VideosController < ApplicationController
 				data.push file_metadata(video_log)
 			end 
 		end
-
-		# # Parse timestamps, latitude, and longitude
-		# file_names.map! {|file_name| file_name.split(',')}
-
-		# # Store time, lat, lon into a hash
-		# data = file_names.collect do |file_name_arr|
-		# 	file_metadata(file_name_arr)
-		# end
 
 		render :json => data
 	end
