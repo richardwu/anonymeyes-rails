@@ -104,28 +104,6 @@ function mainController($scope){
         center: {lat: cur_lat, lng: cur_lng}
       });
 
-
-
-
-
-
-
-
-      // For Testing Purposes
-      var marker = new google.maps.Marker({
-        position: {
-          lat: 43.47284,
-          lng: -80.54027
-        },
-        map: map,
-        title: "Get live stream"
-      });
-      vm.markers.push(marker);
-
-      google.maps.event.addListener(marker, 'click', function(e){
-        $('#modal-1442651880434722854-805448576mp4').openModal();
-      });
-
       vm.$apply();
     };
 
