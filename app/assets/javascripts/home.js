@@ -1,6 +1,11 @@
 angular.module('homePage', [])
 .controller('mainController', ['$scope', mainController]);
 
+$(document).ready(function(){
+    // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+    $('.modal-trigger').leanModal();
+  });
+
 function mainController($scope){
 
 	var vm = $scope;
@@ -14,6 +19,7 @@ function mainController($scope){
 			zoom: 8,
 			center: {lat: -34.397, lng: 150.644}
 		});
+		vm.$apply();
 
 		function newVideoReceived(data){
 			// Data returned is hash with filename, time (in UNIX), lat, and lon
@@ -28,7 +34,7 @@ function mainController($scope){
 				address: getAddress(lat, lon),
 				timestamp: time
 			};
-			$scope.videos.push(video);
+			vm.videos.push(video);
 
 			var marker = new google.maps.Marker({
 				position: {
@@ -42,9 +48,10 @@ function mainController($scope){
 			google.maps.event.addListener(marker, 'click', function(e){
 				$('#modal-'+parseInt(vm.markers.length)).openModal();
 			});
+			vm.$apply();
 		};
 
-
+/*
 		// Retrieve all videos on system
 		$.ajax({
 			url: '/videos',
@@ -58,6 +65,6 @@ function mainController($scope){
 			error: function(resp){
 
 			}
-		});
+		});*/
 	});
 };
