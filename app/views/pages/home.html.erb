@@ -1,13 +1,22 @@
 <body ng-app="homePage">
   <script type="text/javascript">autoload();</script>
-  <div class="row">
-    <div class="card" ng-repeat="video in videos">
-      <div class="card-image">
-        <img src=""></img>
-      </div>
-      <div class="card-content">
-        <h1>{{video.Location}}</h1>
-        <p class="text-muted">{{video.TimeStamp}}</p>
+
+  <div ng-controller="mainController" style="height:100%;position:relative;">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">AnonymEyes</a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="about.html"></a></li>
+      </ul>
+    </div>
+    <div class="row">
+      <div class="card" ng-repeat="video in videos">
+        <div class="card-image">
+          <img src=""></img>
+        </div>
+        <div class="card-content">
+          <h1>{{video.Location}}</h1>
+          <p class="text-muted">{{video.TimeStamp}}</p>
+        </div>
       </div>
     </div>
   </div>
