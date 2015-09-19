@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
+  post '/new_recording' => 'videos#new_recording'
+
   post '/new_video' => 'videos#new_video'
 
   get '/video' => 'videos#get_video'
