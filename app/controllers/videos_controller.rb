@@ -8,7 +8,7 @@ class VideosController < ApplicationController
 
 
 
-		video_log = VideoLog.create(filename: file_name, timestamp: file_name_arr[0], latitude: file_name_arr[1], longitude: file_name_arr[2].split('.')[0])
+		video_log = VideoLog.create(filename: file_name, timestamp: file_name_arr[0], latitude: file_name_arr[1], longitude: file_name_arr[2].split('.mp4')[0])
 
 		if video_log.save
 			data = file_metadata(video_log)
@@ -43,7 +43,7 @@ class VideosController < ApplicationController
 
 			if video_log.nil?
 				file_name_arr = file_name.split(',')
-				video_log = VideoLog.create(filename: file_name, timestamp: file_name_arr[0], latitude: file_name_arr[1], longitude: file_name_arr[2].split('.')[0])
+				video_log = VideoLog.create(filename: file_name, timestamp: file_name_arr[0], latitude: file_name_arr[1], longitude: file_name_arr[2].split('.mp4')[0])
 
 				if video_log.save
 					data.push file_metadata(video_log)
