@@ -59,6 +59,7 @@ GEM
     faye-websocket (0.10.0)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
+    geocoder (1.2.9)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     hiredis (0.6.0)
@@ -170,6 +171,7 @@ DEPENDENCIES
   angularjs-rails (~> 1.4.4)
   byebug
   coffee-rails (~> 4.1.0)
+  geocoder
   jbuilder (~> 2.0)
   jquery-rails
   rails (= 4.2.4)

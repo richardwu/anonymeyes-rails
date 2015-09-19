@@ -34,7 +34,7 @@ gem 'websocket-rails', '~> 0.7.0'
 gem 'angularjs-rails', '~> 1.4.4'
 
 
-
+gem 'geocoder'
 
 
 # Use ActiveModel has_secure_password
