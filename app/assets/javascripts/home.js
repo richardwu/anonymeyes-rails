@@ -12,6 +12,7 @@ function mainController($scope){
 	window.scope = vm;
 
 	angular.element(document).ready(function(){
+
 		videoDispatcher.bind('new_video_received', newVideoReceived);
 
 		vm.markers = [];
@@ -19,6 +20,19 @@ function mainController($scope){
 			zoom: 8,
 			center: {lat: -34.397, lng: 150.644}
 		});
+
+    var marker = new google.maps.Marker({
+      position: {
+        lat: -34.397,
+        lng: 150.644
+      },
+      map: map,
+      title: "Sept 5 2015"
+    });
+    vm.markers.push(marker);
+    google.maps.event.addListener(marker, 'click', function(e){
+      $('#modal-'+parseInt(vm.markers.length)).openModal();
+    });
 		vm.$apply();
 
 		function newVideoReceived(data){
@@ -51,7 +65,7 @@ function mainController($scope){
 			vm.$apply();
 		};
 
-/*
+
 		// Retrieve all videos on system
 		$.ajax({
 			url: '/videos',
@@ -65,6 +79,6 @@ function mainController($scope){
 			error: function(resp){
 
 			}
-		});*/
+		});
 	});
 };
