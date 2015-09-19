@@ -19,9 +19,15 @@
         </div>
       </div>
 
-      <div class="modal" ng-repeat="marker in markers" id="modal-{{$index+1}}">
+      <div class="modal" ng-repeat="video in videos" id="modal-{{$index+1}}">
         <div class="modal-content">
-          <p>text</p>
+          <video width="352" height="288" controls loop>
+            <source ng-src="{{getFile(video)}}" type="video/mp4">
+          </video>
+
+          <div class="spacer"></div>
+
+          <span class="modal-address">{{video.address}}</span>
         </div>
         <div class="modal-footer">
           <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Exit</a>

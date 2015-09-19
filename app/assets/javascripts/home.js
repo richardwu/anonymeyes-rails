@@ -16,6 +16,13 @@ function mainController($scope){
 
     videoDispatcher.bind('new_video_received', newVideoReceived);
 
+    vm.videos = [];
+
+
+    vm.getFile = function(video){
+      return '/recorded-videos/' + video.filename;
+    }
+
     // Try to get the user's location
     var cur_lat, cur_lng;
     function geo_success(position) {
@@ -79,27 +86,18 @@ function mainController($scope){
     };
 
     function newVideoReceived(data){
-      // Data returned is hash with filename, time (in UNIX), lat, and lon
+      // Data returned is hash with filename, time (in UNIX), lat, lon, and address
+      var video = data;
 
-      var filename = data.filename;
-      var time = data.time;
-      var lat = data.lat;
-      var lon = data.lon;
-
-      // Do stuff with this
-      video = {
-        address: getAddress(lat, lon),
-        timestamp: time
-      };
       vm.videos.push(video);
 
       var marker = new google.maps.Marker({
         position: {
-          lat: lat,
-          lng: lon
+          lat: data.lat,
+          lng: data.lon
         },
         map: map,
-        title: time
+        title: 'Click for stream'
       });
       vm.markers.push(marker);
       google.maps.event.addListener(marker, 'click', function(e){
@@ -115,8 +113,14 @@ function mainController($scope){
       method: 'GET',
       dataType: 'json',
       success: function(resp){
-        // resp is a hash of hashes of filenames, times, lats, and lons
+
         console.log(resp);
+        // resp is a hash of hashes of filenames, times, lats, lons, and addresses
+        vm.videos = resp;
+
+        vm.$apply();
+
+
       },
 
       error: function(resp){

@@ -1,13 +1,23 @@
 #map {
   height: 500px;
 }
+
+.spacer {
+
+	clear:both;
+	width: 0;
+}
+
 .modal {
-  height: 60%;
-  width: 40%;
 }
 .modal-content {
   border: none;
   border-radius: none;
   box-shadow: none;
-  height: 85%;
+  height: auto;
+  text-align: center;
+}
+
+.modal-address{
+
 }
