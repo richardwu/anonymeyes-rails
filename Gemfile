@@ -31,6 +31,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'websocket-rails', '~> 0.7.0'
 
 
+gem 'angularjs-rails', '~> 1.4.4'
+
 
 
 

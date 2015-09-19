@@ -17,6 +17,10 @@
 //= require js/bootstrap.min 
 //= require js/material.min
 
-//= require_tree .
+//= require angular
+
 //= require websocket_rails/main
+
+
+//= require_tree .
 
