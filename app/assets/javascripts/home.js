@@ -2,6 +2,7 @@ angular.module('homePage', [])
 .controller('mainController', ['$scope', mainController]);
 
 function mainController($scope){
+	$scope.videos = [];
 
 	angular.element.document.ready(function(){
 		videoDispatcher.bind('new_video_received', newVideoReceived);
@@ -15,7 +16,11 @@ function mainController($scope){
 			var lon = data.lon;
 
 			// Do stuff with this
-
+			video = {
+				address: getAddress(lat, lon),
+				timestamp: time
+			};
+			$scope.videos.push(video);
 		};
 
 
@@ -32,5 +37,20 @@ function mainController($scope){
 
 			}
 		});
+
+		function getAddress(lat, lon){
+			$.ajax({
+				url: 'address',
+				method: 'POST',
+				data: {lat, lon},
+				dataType: json,
+				success: function(data){
+
+				},
+				error: function(data) {
+
+				}
+			});
+		}
 	});
 };
