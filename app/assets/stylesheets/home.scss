@@ -8,7 +8,8 @@
 	width: 0;
 }
 
-.card {
+.row .col.card {
+	padding: 0;
 	margin: 20px;
 }
 
@@ -29,17 +30,26 @@
 
 .list-time {
 	float: left;
+	max-width: 40%;
+	margin-right: 5%;
 }
 
 .list-address {
+	white-space: pre-wrap;
+	max-width: 55%;
 	float: right;
 }
 
 
 
 /* list view */
-.video {
+.list-video {
 	border-top: 1px solid black;
 	border-bottom: 1px solid black;
+	cursor: pointer;
+	padding: 10px;
+}
 
+.list-video:hover {
+	background-color: #DDDDDD;
 }

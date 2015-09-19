@@ -21,10 +21,11 @@ function mainController($scope){
 
     vm.getFile = function(video){
       return '/recorded-videos/' + video.filename;
-    }
+    };
 
     vm.formatTime = function(time){
-    }
+      return moment.unix(time).calendar();
+    };
 
     // Try to get the user's location
     var cur_lat, cur_lng;
