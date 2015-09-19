@@ -1,1 +1,1 @@
-var videoDispatcher = new WebSocketRails('localhost:3000/websocket');
+var videoDispatcher = new WebSocketRails('localhost:80/websocket');
