@@ -36,6 +36,8 @@ gem 'angularjs-rails', '~> 1.4.4'
 
 gem 'geocoder'
 
+gem 'momentjs-rails', '~> 2.10.3'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

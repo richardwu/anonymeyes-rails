@@ -19,6 +19,8 @@
 
 //= require angular
 
+//= require moment
+
 //= require websocket_rails/main
 
 
