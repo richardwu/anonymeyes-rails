@@ -120,15 +120,14 @@ function mainController($scope){
       timeout: 27000
     };
 
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options);
-    } else {
+    // if ("geolocation" in navigator) {
+    //   navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options);
+    // } else {
       geo_error();
-    }
+    // }
 
     function make_map() {
       // console.log("Make map " + cur_lat + " " + cur_lng);
-      vm.markers = [];
       map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
         center: {lat: cur_lat, lng: cur_lng}
@@ -144,11 +143,22 @@ function mainController($scope){
     function newRecordingStarted(data){
       var video = data;
 
-      vm.videos.push(video);
+      var isNew = true;
+      for (i in vm.videos){
+        if (vm.videos[i].filename == video.filename){
+          isNew = false;
+          break;
+        }
+      }
 
-      addMarker(video);
+      if (isNew){
+        vm.videos.push(video);
 
-      vm.$apply();
+        addMarker(video);
+        vm.$apply();
+
+      }
+
     };
 
 
@@ -184,6 +194,8 @@ function mainController($scope){
 
         console.log(resp);
 
+        make_map();
+
 
         // resp is a hash of hashes of filenames, times, lats, lons, and addresses
         vm.videos = resp;
@@ -199,7 +211,7 @@ function mainController($scope){
       },
 
       error: function(resp){
-
+        console.log("get_videos failed!");
       }
     });
 
