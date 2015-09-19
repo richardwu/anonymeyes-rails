@@ -20,13 +20,27 @@ function mainController($scope){
     var ref = new Firebase('https://blazing-torch-7129.firebaseio.com/new_recording_started');
 
     ref.on('value', function(snapshot){
-      console.log(snapshot.val());
+      console.log ($(snapshot.val()).last());
+      newRecordingStarted($(snapshot.val()).last());
     }, function(errorObject){
       console.log('The read failed: ' + errorObject.code);
     });
+
+
+
+    var ref2 = new Firebase('https://blazing-torch-7129.firebaseio.com/new_video_uploaded');
+    ref2.on('value', function(snapshot){
+      console.log ($(snapshot.val()).last());
+      newVideoUploaded($(snapshot.val()).last());
+    }, function(errorObject){
+      console.log('The read failed: ' + errorObject.code);
+    });
+
     // videoDispatcher.bind('new_video_uploaded', newVideoUploaded);
 
     vm.videos = [];
+
+    vm.markers = [];
 
 
     vm.getFile = function(video){
@@ -77,13 +91,13 @@ function mainController($scope){
     function geo_success(position) {
       cur_lat = position.coords.latitude;
       cur_lng = position.coords.longitude;
-      console.log("Success " + cur_lat + " " + cur_lng);
+      // console.log("Success " + cur_lat + " " + cur_lng);
       make_map();
     }
     function geo_error() {
       cur_lat = 43.47284;
       cur_lng = -80.54027;
-      console.log("Error " + cur_lat + " " + cur_lng);
+      // console.log("Error " + cur_lat + " " + cur_lng);
       make_map();
     }
     var geo_options = {
@@ -191,7 +205,6 @@ function mainController($scope){
       });
 
       marker.setMap(map);
-
     };
   });
 };
