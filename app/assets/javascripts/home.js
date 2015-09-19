@@ -13,6 +13,11 @@ function mainController($scope){
 
   var map;
 
+
+  vm.videos = [];
+
+  vm.markers = [];
+
   // On document load
   angular.element(document).ready(function(){
 
@@ -20,8 +25,22 @@ function mainController($scope){
     var ref = new Firebase('https://blazing-torch-7129.firebaseio.com/new_recording_started');
 
     ref.on('value', function(snapshot){
-      console.log ($(snapshot.val()).last());
-      newRecordingStarted($(snapshot.val()).last());
+      var data = snapshot.val();
+
+      var video;
+      var latest = 0;
+      $.each(snapshot.val(), function(key, value){
+        if(parseInt(value.time) > latest){
+          latest = parseInt(value.time);
+          video = value;
+        }
+      });
+
+      // Update GUI and global arrays
+      if (typeof video !== 'undefined')
+        newRecordingStarted(video);
+
+
     }, function(errorObject){
       console.log('The read failed: ' + errorObject.code);
     });
@@ -30,17 +49,12 @@ function mainController($scope){
 
     var ref2 = new Firebase('https://blazing-torch-7129.firebaseio.com/new_video_uploaded');
     ref2.on('value', function(snapshot){
-      console.log ($(snapshot.val()).last());
-      newVideoUploaded($(snapshot.val()).last());
+      newVideoUploaded();
     }, function(errorObject){
       console.log('The read failed: ' + errorObject.code);
     });
 
     // videoDispatcher.bind('new_video_uploaded', newVideoUploaded);
-
-    vm.videos = [];
-
-    vm.markers = [];
 
 
     vm.getFile = function(video){
@@ -148,7 +162,7 @@ function mainController($scope){
 
 
 
-    function newVideoUploaded(data){
+    function newVideoUploaded(){
       // Data returned is hash with filename, time (in UNIX), lat, lon, and address AND ID
       // var video = data;
 
@@ -169,9 +183,14 @@ function mainController($scope){
       success: function(resp){
 
         console.log(resp);
+        console.log(resp.length > 0);
+
 
         // resp is a hash of hashes of filenames, times, lats, lons, and addresses
-        vm.videos = resp;
+        if (resp.length > 0)
+          vm.videos = resp;
+        else
+          vm.videos = [];
 
         for (i in vm.videos){
           addMarker(vm.videos[i]);
