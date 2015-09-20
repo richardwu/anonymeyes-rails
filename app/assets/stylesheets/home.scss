@@ -8,7 +8,9 @@ body {
 
 	overflow: hidden;
 }
-
+nav {
+  border-bottom: 10px solid #E85A60;
+}
 nav .brand-logo {
   position: relative;
 }
@@ -51,7 +53,7 @@ nav .brand-logo {
 
 .empty-video {
 	height: 400px;
-	line-height: 288px;
+	line-height: 400px;
 	margin-left: none;
 	margin-right: none;
 	width: 100%;
@@ -84,7 +86,7 @@ nav .brand-logo {
 }
 
 .list-video:hover {
-	background-color: #ee6e73;
+	background-color: #f18589;
 	color: white;
 
 	.text-muted {
@@ -93,10 +95,12 @@ nav .brand-logo {
 }
 
 .modal .modal-footer {
+  text-align: center;
   width: 100%;
   background-color: #007AA3;
   opacity: 0.8;
-  border-bottom: 5px solid #007196;
+  height: 30px;
+  border-bottom: 8px solid #00698C;
 }
 .modal .modal-address {
   text-align: center;
