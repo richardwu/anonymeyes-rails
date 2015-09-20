@@ -152,7 +152,7 @@ function mainController($scope){
       }
 
       if (isNew){
-        vm.videos.push(video);
+        vm.videos.splice(0,0,video);
 
         addMarker(video);
         vm.$apply();
