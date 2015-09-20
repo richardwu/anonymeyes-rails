@@ -49,7 +49,7 @@ class VideosController < ApplicationController
 		# Retrieve all video filenames
 		# file_names = Dir[Rails.root+'public/recorded-videos/*'].map! {|path| File.basename path}
 
-		file_names = VideoLog.all.collect(&:filename)
+		file_names = VideoLog.all.order('timestamp DESC').collect(&:filename)
 
 
 		data = []

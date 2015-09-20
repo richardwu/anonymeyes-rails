@@ -1,12 +1,20 @@
 body {
-  a, a:hover, a:focus, a:visited, a[href]:after {
-    text-decoration: none;
-    color: inherit;
-  }
+	a, a:hover, a:focus, a:visited, a[href]:after {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	color: #2C3E50;
+
+	overflow: hidden;
+}
+
+nav {
+	background-color: #3498DB;
 }
 
 #map {
-  height: 500px;
+	height: 540px;
 }
 
 .spacer {
@@ -15,19 +23,28 @@ body {
 	width: 0;
 }
 
+.text-muted {
+	color: #2C3E50;
+}
+
 .row .col.card {
 	padding: 0;
 	margin: 20px;
 }
 
+.card.card-list-video{
+	height: 540px;
+	overflow-y: auto;
+}
+
 .modal {
 }
 .modal-content {
-  border: none;
-  border-radius: none;
-  box-shadow: none;
-  height: auto;
-  text-align: center;
+	border: none;
+	border-radius: none;
+	box-shadow: none;
+	height: auto;
+	text-align: center;
 }
 
 .modal-address{
@@ -50,26 +67,30 @@ body {
 
 .list-time {
 	float: left;
-	max-width: 40%;
+	width: 30%;
 	margin-right: 5%;
 }
 
 .list-address {
 	white-space: pre-wrap;
-	max-width: 55%;
-	float: right;
+	max-width: 65%;
+	float: left;
 }
 
 
 
 /* list view */
 .list-video {
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
+	border-bottom: 1px solid #2980B9;
 	cursor: pointer;
 	padding: 10px;
 }
 
 .list-video:hover {
-	background-color: #DDDDDD;
+	background-color: #2980B9;
+	color: white;
+
+	.text-muted {
+		color: white;
+	}
 }
