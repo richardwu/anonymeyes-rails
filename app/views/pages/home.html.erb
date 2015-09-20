@@ -8,7 +8,6 @@
           <span><a href="#" class="brand-logo"><span class="glyphicon glyphicon-phone"></a></span>
           <span><p class="brand-logo">AnonymEyes</p></span>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="about.html">About</a></li>
             <li><a href="https://www.github.com/neery1218/AnonymEyes">Download the app</a></li>
           </ul>
         </div>
@@ -32,7 +31,7 @@
 
       <div class="modal" ng-repeat="video in videos" id="modal-{{formatFilename(video.filename)}}">
         <div class="modal-content" style="{padding: 0px;}">
-          <video width="288" height="352" controls loop ng-if="checkVideo(video)">
+          <video width="400" height="420" controls loop ng-if="checkVideo(video)">
             <source ng-src="{{getFile(video)}}" type="video/mp4">
             </video>
 

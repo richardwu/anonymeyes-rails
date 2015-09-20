@@ -44,11 +44,15 @@ nav .brand-logo {
 
 .modal {
   overflow-y: hidden;
-  width: 30%;
+  width: 310px;
 }
 
 .modal-address{
 
+}
+
+video {
+  margin-top: 10px;
 }
 
 .empty-video {
@@ -92,6 +96,9 @@ nav .brand-logo {
 	.text-muted {
 		color: white;
 	}
+}
+.modal {
+  max-height: 395px;
 }
 
 .modal .modal-footer {
