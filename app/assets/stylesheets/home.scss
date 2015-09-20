@@ -10,7 +10,12 @@ body {
 }
 
 nav {
-	background-color: #3498DB;
+}
+nav .brand-logo {
+  position: relative;
+}
+.glyphicon {
+  top: 4px;
 }
 
 #map {
@@ -38,13 +43,8 @@ nav {
 }
 
 .modal {
-}
-.modal-content {
-	border: none;
-	border-radius: none;
-	box-shadow: none;
-	height: auto;
-	text-align: center;
+  overflow-y: hidden;
+  width: 30%;
 }
 
 .modal-address{
@@ -52,12 +52,11 @@ nav {
 }
 
 .empty-video {
-	height: 288px;
+	height: 400px;
 	line-height: 288px;
-	margin-left: auto;
-	margin-right: auto;
-	width: 352px;
-	border: 1px solid black;
+	margin-left: none;
+	margin-right: none;
+	width: 100%;
 }
 
 
@@ -93,4 +92,14 @@ nav {
 	.text-muted {
 		color: white;
 	}
+}
+
+
+.modal .modal-content {
+	border: none;
+	border-radius: none;
+	box-shadow: none;
+	height: auto;
+	text-align: center;
+  padding: 0;
 }
