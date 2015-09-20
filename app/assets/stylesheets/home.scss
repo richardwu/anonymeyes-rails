@@ -10,7 +10,7 @@ body {
 }
 
 nav {
-	background-color: #3498DB;
+	/*background-color: #3498DB; */
 }
 
 #map {
@@ -81,13 +81,13 @@ nav {
 
 /* list view */
 .list-video {
-	border-bottom: 1px solid #2980B9;
+	border-bottom: 1px solid #ee6e73;
 	cursor: pointer;
 	padding: 10px;
 }
 
 .list-video:hover {
-	background-color: #2980B9;
+	background-color: #ee6e73;
 	color: white;
 
 	.text-muted {
