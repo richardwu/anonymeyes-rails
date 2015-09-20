@@ -31,7 +31,7 @@
 
       <div class="modal" ng-repeat="video in videos" id="modal-{{formatFilename(video.filename)}}">
         <div class="modal-content" style="{padding: 0px;}">
-          <video width="400" height="420" controls loop ng-if="checkVideo(video)">
+          <video width="288" height="352" controls loop ng-if="checkVideo(video)">
             <source ng-src="{{getFile(video)}}" type="video/mp4">
             </video>
 
