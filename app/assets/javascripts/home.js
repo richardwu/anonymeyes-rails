@@ -103,6 +103,8 @@ function mainController($scope){
     // Try to get the user's location
     var cur_lat, cur_lng;
     function geo_success(position) {
+      console.log(position);
+
       cur_lat = position.coords.latitude;
       cur_lng = position.coords.longitude;
       // console.log("Success " + cur_lat + " " + cur_lng);
@@ -130,7 +132,7 @@ function mainController($scope){
       // console.log("Make map " + cur_lat + " " + cur_lng);
       map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
-        center: {lat: cur_lat, lng: cur_lng}
+        center: new google.maps.LatLng(cur_lat, cur_lng)
       });
 
       vm.$apply();
