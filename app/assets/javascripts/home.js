@@ -103,18 +103,16 @@ function mainController($scope){
     // Try to get the user's location
     var cur_lat, cur_lng;
     function geo_success(position) {
-      console.log(position);
+      // console.log(position);
 
       cur_lat = position.coords.latitude;
       cur_lng = position.coords.longitude;
       // console.log("Success " + cur_lat + " " + cur_lng);
-      make_map();
     }
     function geo_error() {
       cur_lat = 43.47284;
       cur_lng = -80.54027;
       // console.log("Error " + cur_lat + " " + cur_lng);
-      make_map();
     }
     var geo_options = {
       enableHighAccuracy: false,
