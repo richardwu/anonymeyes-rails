@@ -120,11 +120,11 @@ function mainController($scope){
       timeout: 27000
     };
 
-    // if ("geolocation" in navigator) {
-    //   navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options);
-    // } else {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options);
+    } else {
       geo_error();
-    // }
+    }
 
     function make_map() {
       // console.log("Make map " + cur_lat + " " + cur_lng);
@@ -192,7 +192,7 @@ function mainController($scope){
       dataType: 'json',
       success: function(resp){
 
-        console.log(resp);
+        // console.log(resp);
 
         make_map();
 
