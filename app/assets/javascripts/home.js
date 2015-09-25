@@ -12,6 +12,8 @@ function mainController($scope){
   window.scope = vm;
 
   var map;
+  var cur_lat, cur_lng;
+
 
 
   vm.videos = [];
@@ -90,7 +92,7 @@ function mainController($scope){
       } else {
         return false;
       }
-    }
+    }  
 
 
 
@@ -101,7 +103,6 @@ function mainController($scope){
 
 
     // Try to get the user's location
-    var cur_lat, cur_lng;
     function geo_success(position) {
       // console.log(position);
 
@@ -122,12 +123,6 @@ function mainController($scope){
       timeout: 27000
     };
 
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options);
-    } else {
-      geo_error();
-    }
-
     function make_map() {
       // console.log("Make map " + cur_lat + " " + cur_lng);
       map = new google.maps.Map(document.getElementById('map'), {
@@ -135,10 +130,12 @@ function mainController($scope){
         center: new google.maps.LatLng(cur_lat, cur_lng)
       });
 
+      for (i in vm.videos){
+        addMarker(vm.videos[i]);
+      }
+
       vm.$apply();
     };
-
-
 
 
 
@@ -194,24 +191,16 @@ function mainController($scope){
       dataType: 'json',
       success: function(resp){
 
-        // test sample for local server
-        // resp = [{filename: '1442776235,43.46756387,-80.54130886.mp4', time: '1442776235', lat: '43.46756387', lon: '-80.54130886', address: 'Ring Rd, Waterloo, ON N2L 3G1, Canada'}]
-
-
-        // console.log(resp);
-        // make_map();
-
         // resp is a hash of hashes of filenames, times, lats, lons, and addresses
         vm.videos = resp;
 
-        for (i in vm.videos){
-          addMarker(vm.videos[i]);
+        // test sample for local server
+        // resp = [{filename: '1442776235,43.46756387,-80.54130886.mp4', time: '1442776235', lat: '43.46756387', lon: '-80.54130886', address: 'Ring Rd, Waterloo, ON N2L 3G1, Canada'}]
+        if ("geolocation" in navigator) {
+          navigator.geolocation.getCurrentPosition(geo_success, geo_error, geo_options);
+        } else {
+          geo_error();
         }
-
-
-        vm.$apply();
-
-
       },
 
       error: function(resp){
@@ -228,11 +217,13 @@ function mainController($scope){
 
       vm.markers.push(marker);
 
+
       google.maps.event.addListener(marker, 'click', function(e){
         $('#modal-'+vm.formatFilename(video.filename)).openModal();
       });
 
       marker.setMap(map);
+      // console.log(map);
     };
   });
 };
