@@ -108,11 +108,13 @@ function mainController($scope){
       cur_lat = position.coords.latitude;
       cur_lng = position.coords.longitude;
       // console.log("Success " + cur_lat + " " + cur_lng);
+      make_map();
     }
     function geo_error() {
       cur_lat = 43.47284;
       cur_lng = -80.54027;
       // console.log("Error " + cur_lat + " " + cur_lng);
+      make_map();
     }
     var geo_options = {
       enableHighAccuracy: false,
@@ -192,10 +194,12 @@ function mainController($scope){
       dataType: 'json',
       success: function(resp){
 
+        // test sample for local server
+        // resp = [{filename: '1442776235,43.46756387,-80.54130886.mp4', time: '1442776235', lat: '43.46756387', lon: '-80.54130886', address: 'Ring Rd, Waterloo, ON N2L 3G1, Canada'}]
+
+
         // console.log(resp);
-
-        make_map();
-
+        // make_map();
 
         // resp is a hash of hashes of filenames, times, lats, lons, and addresses
         vm.videos = resp;
@@ -217,10 +221,7 @@ function mainController($scope){
 
     function addMarker(video){
       var marker = new google.maps.Marker({
-        position: {
-          lat: video.lat,
-          lng: video.lon
-        },
+        position: new google.maps.LatLng(video.lat, video.lon),
         map: map,
         title: 'Click for stream'
       });
